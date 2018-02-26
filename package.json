@@ -1,5 +1,5 @@
 {
-  "name": "Boltius-API",
+  "name": "boltius-api",
   "version": "1.0.0",
   "description": "API for Project Boltius",
   "main": "index.js",
@@ -8,12 +8,14 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "dbsetup": "node dbsetup.js",
     "start:dev": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js --exec babel-node index.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.40",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.9.0",
@@ -22,12 +24,21 @@
     "prettier": "^1.10.2"
   },
   "dependencies": {
+    "accepts": "^1.3.4",
+    "bcrypt": "^1.0.3",
+    "boom": "^7.1.1",
     "confidence": "^3.0.2",
     "dotenv": "^5.0.0",
     "fastify": "^1.0.0-rc.2",
     "fastify-mongodb": "^0.5.0",
+    "fastify-plugin": "^0.2.2",
+    "graphql": "^0.13.1",
     "joi": "^13.1.2",
+    "joistick": "^1.0.1",
     "mongo-models": "^2.0.3",
-    "mongodb": "^3.0.3"
+    "mongodb": "^3.0.3",
+    "promptly": "^3.0.3",
+    "slug": "^0.9.1",
+    "useragent": "^2.3.0"
   }
 }
