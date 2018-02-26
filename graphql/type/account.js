@@ -1,20 +1,41 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID } from "graphql";
+import { GraphQLObjectType, GraphQLList } from "graphql";
+
+import RoleInterface from "../interface/role";
+import AssignedInterface from "../interface/assigned";
+import NoteType from "./note";
+
+const AssignedNoteType = new GraphQLObjectType({
+    name: "Assigned NoteType",
+    interfaces: [AssignedInterface],
+    fields: () => ({
+        note: { type: NoteType },
+    }),
+});
+
+const AssignedStatusType = new GraphQLObjectType({
+    name: "Assigned Status Type",
+    interfaces: [AssignedInterface],
+    fields: () => ({
+        status: { type: StatusType },
+    }),
+});
 
 const AccountType = new GraphQLObjectType({
     name: "Account",
+    interfaces: [RoleInterface],
     fields: () => ({
-        id: { type: GraphQLID },
-        name: {
-            type: new GraphQLList({
-                name: "Account's full name",
+        status: {
+            type: new GraphQLObjectType({
                 fields: () => ({
-                    first: { type: GraphQLString },
-                    middle: { type: GraphQLString },
-                    last: { type: GraphQLString },
+                    current: { type: AssignedStatusType },
+                    log: { type: new GraphQLList(AssignedStatusType) },
                 }),
             }),
         },
-        timeCreated: { type: GraphQLString },
+        notes: {
+            name: "Array of Admin note",
+            type: new GraphQLList(AssignedNoteType),
+        },
     }),
 });
 

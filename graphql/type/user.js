@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLBoolean } = require("graphql");
+import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLBoolean } from "graphql";
 
 const UserType = new GraphQLObjectType({
     name: "User",
@@ -12,4 +12,4 @@ const UserType = new GraphQLObjectType({
     }),
 });
 
-module.exports = UserType;
+export default UserType;
