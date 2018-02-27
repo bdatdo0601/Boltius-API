@@ -5,5 +5,13 @@ exports.UnknownError = createError("UnknownError", {
 });
 
 exports.UnauthenticatedError = createError("UnauthenticatedError", {
-    message: "you need to log in in order to do this",
+    message: "You need to log in in order to do this",
+});
+
+exports.UnauthorizedError = createError("UnauthorizedError", {
+    message: "You do not have permission error",
+});
+
+exports.ForbiddenError = createError("ForbiddenError", {
+    message: "You need to have root permission to perform this",
 });

@@ -216,7 +216,6 @@ const handler = (options = {}) => async (request, reply) => {
 
         // Can we show graphiQL?
         const showGraphiQL = graphiql && canDisplayGraphiQL(request, payload);
-        console.log(showGraphiQL);
 
         // Get GraphQL params = require(the request and POST body data.
         const { query, variables, operationName } = getGraphQLParams(request, payload);
