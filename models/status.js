@@ -1,7 +1,7 @@
-import Assert from "assert";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import Slug from "slug";
+const Assert = require("assert");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const Slug = require("slug");
 
 const schema = Joi.object({
     _id: Joi.string(),
@@ -30,4 +30,4 @@ Status.collectionName = "statuses";
 Status.schema = schema;
 Status.indexes = [{ key: { pivot: 1 } }, { key: { name: 1 } }];
 
-export default Status;
+module.exports = Status;

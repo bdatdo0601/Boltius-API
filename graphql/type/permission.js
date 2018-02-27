@@ -1,4 +1,4 @@
-import { GraphQLBoolean, GraphQLString } from "graphql";
+const { GraphQLBoolean, GraphQLString } = require("graphql");
 
 const PermissionType = new GraphQLObjectType({
     name: "Admin Permission",
@@ -8,4 +8,4 @@ const PermissionType = new GraphQLObjectType({
     }),
 });
 
-export default PermissionType;
+module.exports = PermissionType;

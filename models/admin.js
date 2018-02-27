@@ -1,8 +1,8 @@
-import AdminGroup from "./admin-group";
-import Assert from "assert";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewDate from "joistick/new-date";
+const AdminGroup = require("./admin-group");
+const Assert = require("assert");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewDate = require("joistick/new-date");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -145,4 +145,4 @@ Admin.collectionName = "admins";
 Admin.schema = schema;
 Admin.indexes = [{ key: { "user.id": 1 } }, { key: { "user.name": 1 } }];
 
-export default Admin;
+module.exports = Admin;

@@ -1,8 +1,8 @@
-import Assert from "assert";
-import Config from "../config";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewDate from "joistick/new-date";
+const Assert = require("assert");
+const Config = require("../config");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewDate = require("joistick/new-date");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -42,4 +42,4 @@ AuthAttempt.collectionName = "authAttempts";
 AuthAttempt.schema = schema;
 AuthAttempt.indexes = [{ key: { ip: 1, username: 1 } }, { key: { username: 1 } }];
 
-export default AuthAttempt;
+module.exports = AuthAttempt;

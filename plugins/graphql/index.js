@@ -1,13 +1,13 @@
 /**
- * Import dependencies
+ * const dependencies
  */
-import Joi from "joi";
-import Boom from "boom";
-import { Stream } from "stream";
-import { Source, parse, validate, execute, formatError, getOperationAST, specifiedRules } from "graphql";
-import { version } from "../../package.json";
-import renderGraphiQL from "./graphiql";
-import accepts from "accepts";
+const Joi = require("joi");
+const Boom = require("boom");
+const { Stream } = require("stream");
+const { Source, parse, validate, execute, formatError, getOperationAST, specifiedRules } = require("graphql");
+const { version } = require("../../package.json");
+const renderGraphiQL = require("./graphiql");
+const accepts = require("accepts");
 
 /**
  * Define constants
@@ -33,7 +33,7 @@ const optionsSchema = {
 };
 
 /**
- * Define helper: get options from object/function
+ * Define helper: get options = require(object/function
  */
 const getOptions = async (options, request) => {
     // Get options
@@ -76,7 +76,7 @@ const parsePayload = async request => {
 };
 
 /**
- * Define helper: get GraphQL parameters from query/payload
+ * Define helper: get GraphQL parameters = require(query/payload
  */
 const getGraphQLParams = (request, payload = {}) => {
     // GraphQL Query string.
@@ -166,7 +166,9 @@ const createResult = async ({
             }
 
             // Otherwise, report a 405: Method Not Allowed error.
-            throw Boom.methodNotAllowed(`Can only perform a ${operationAST.operation} operation from a POST request.`);
+            throw Boom.methodNotAllowed(
+                `Can only perform a ${operationAST.operation} operation = require a POST request`
+            );
         }
     }
 
@@ -216,7 +218,7 @@ const handler = (options = {}) => async (request, reply) => {
         const showGraphiQL = graphiql && canDisplayGraphiQL(request, payload);
         console.log(showGraphiQL);
 
-        // Get GraphQL params from the request and POST body data.
+        // Get GraphQL params = require(the request and POST body data.
         const { query, variables, operationName } = getGraphQLParams(request, payload);
 
         // Create the result
@@ -303,4 +305,4 @@ register.attributes = { name: "graphql", version };
 /**
  * Export plugin
  */
-export default register;
+module.exports = register;

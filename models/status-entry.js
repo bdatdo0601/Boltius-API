@@ -1,6 +1,6 @@
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewDate from "joistick/new-date";
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewDate = require("joistick/new-date");
 
 const schema = Joi.object({
     id: Joi.string().required(),
@@ -16,4 +16,4 @@ class StatusEntry extends MongoModels {}
 
 StatusEntry.schema = schema;
 
-export default StatusEntry;
+module.exports = StatusEntry;

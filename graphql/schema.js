@@ -1,6 +1,6 @@
-import { GraphQLSchema } from "graphql";
+const { GraphQLSchema } = require("graphql");
 
-import Queries from "./queries";
+const Queries = require("./queries");
 
 module.exports = new GraphQLSchema({
     query: Queries,

@@ -1,7 +1,7 @@
-import Assert from "assert";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import Slug from "slug";
+const Assert = require("assert");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const Slug = require("slug");
 
 const schema = Joi.object({
     _id: Joi.string(),
@@ -37,4 +37,4 @@ AdminGroup._idClass = String;
 AdminGroup.collectionName = "adminGroups";
 AdminGroup.schema = schema;
 
-export default AdminGroup;
+module.exports = AdminGroup;

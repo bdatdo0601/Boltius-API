@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLString, GraphQLObjectType } from "graphql";
+const { GraphQLID, GraphQLString, GraphQLObjectType } = require("graphql");
 
 const StatusType = new GraphQLObjectType({
     name: "Status",
@@ -9,4 +9,4 @@ const StatusType = new GraphQLObjectType({
     }),
 });
 
-export default StatusType;
+module.exports = StatusType;

@@ -1,5 +1,5 @@
-import Confidence from "confidence";
-import Dotenv from "dotenv";
+const Confidence = require("confidence");
+const Dotenv = require("dotenv");
 
 Dotenv.config({ silent: true });
 

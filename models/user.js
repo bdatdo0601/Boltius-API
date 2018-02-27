@@ -1,10 +1,10 @@
-import Account from "./account";
-import Admin from "./admin";
-import Assert from "assert";
-import Bcrypt from "bcrypt";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewDate from "joistick/new-date";
+const Account = require("./account");
+const Admin = require("./admin");
+const Assert = require("assert");
+const Bcrypt = require("bcrypt");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewDate = require("joistick/new-date");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -186,4 +186,4 @@ User.collectionName = "users";
 User.schema = schema;
 User.indexes = [{ key: { username: 1 }, unique: true }, { key: { email: 1 }, unique: true }];
 
-export default User;
+module.exports = User;

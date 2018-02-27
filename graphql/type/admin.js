@@ -1,9 +1,9 @@
-import { GraphQLObjectType, GraphQLList } from "graphql";
+const { GraphQLObjectType, GraphQLList } = require("graphql");
 
-import RoleInterface from "./interface/role";
+const RoleInterface = require("./interface/role");
 
-import PermissionType from "./permission";
-import GroupType from "./group";
+const PermissionType = require("./permission");
+const GroupType = require("./group");
 
 const AdminType = new GraphQLObjectType({
     name: "Admin",
@@ -14,4 +14,4 @@ const AdminType = new GraphQLObjectType({
     }),
 });
 
-export default AdminType;
+module.exports = AdminType;

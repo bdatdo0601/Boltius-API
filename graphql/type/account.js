@@ -1,11 +1,11 @@
-import { GraphQLObjectType, GraphQLList } from "graphql";
+const { GraphQLObjectType, GraphQLList } = require("graphql");
 
-import RoleInterface from "../interface/role";
-import AssignedInterface from "../interface/assigned";
-import NoteType from "./note";
+const RoleInterface = require("../interface/role");
+const AssignedInterface = require("../interface/assigned");
+const NoteType = require("./note");
 
 const AssignedNoteType = new GraphQLObjectType({
-    name: "Assigned NoteType",
+    name: "Assigned Note Type",
     interfaces: [AssignedInterface],
     fields: () => ({
         note: { type: NoteType },
@@ -39,4 +39,4 @@ const AccountType = new GraphQLObjectType({
     }),
 });
 
-export default AccountType;
+module.exports = AccountType;

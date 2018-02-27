@@ -1,7 +1,7 @@
-import { GraphQLObjectType } from "graphql";
-import UserQuery from "./user";
+const { GraphQLObjectType } = require("graphql");
+const UserQuery = require("./user");
 
-export default new GraphQLObjectType({
+module.exports = new GraphQLObjectType({
     name: "RootQuery",
     fields: () => ({
         ...UserQuery,

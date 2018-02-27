@@ -1,6 +1,6 @@
-import { GraphQLString } from "graphql";
-import UserType from "../type/user";
-import User from "../../models/user";
+const { GraphQLString } = require("graphql");
+const UserType = require("../type/user");
+const User = require("../../models/user");
 
 const user = {
     type: UserType,
@@ -16,6 +16,6 @@ const user = {
     },
 };
 
-export default {
+module.exports = {
     user,
 };

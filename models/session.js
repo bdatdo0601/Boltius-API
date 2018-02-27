@@ -1,10 +1,10 @@
-import Assert from "assert";
-import Bcrypt from "bcrypt";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewDate from "joistick/new-date";
-import Useragent from "useragent";
-import Uuid from "uuid";
+const Assert = require("assert");
+const Bcrypt = require("bcrypt");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewDate = require("joistick/new-date");
+const Useragent = require("useragent");
+const Uuid = require("uuid");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -80,4 +80,4 @@ Session.collectionName = "sessions";
 Session.schema = schema;
 Session.indexes = [{ key: { userId: 1 } }];
 
-export default Session;
+module.exports = Session;

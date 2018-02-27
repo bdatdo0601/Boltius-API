@@ -1,10 +1,10 @@
-import Assert from "assert";
-import Joi from "joi";
-import MongoModels from "mongo-models";
-import NewArray from "joistick/new-array";
-import NewDate from "joistick/new-date";
-import NoteEntry from "./note-entry";
-import StatusEntry from "./status-entry";
+const Assert = require("assert");
+const Joi = require("joi");
+const MongoModels = require("mongo-models");
+const NewArray = require("joistick/new-array");
+const NewDate = require("joistick/new-date");
+const NoteEntry = require("./note-entry");
+const StatusEntry = require("./status-entry");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -95,4 +95,4 @@ Account.collectionName = "accounts";
 Account.schema = schema;
 Account.indexes = [{ key: { "user.id": 1 } }, { key: { "user.name": 1 } }];
 
-export default Account;
+module.exports = Account;

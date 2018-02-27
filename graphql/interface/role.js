@@ -1,6 +1,6 @@
-import { GraphQLInterfaceType, GraphQLString, GraphQLID } from "graphql";
+const { GraphQLInterfaceType, GraphQLString, GraphQLID } = require("graphql");
 
-import UserType from "../type/user";
+const UserType = require("../type/user");
 
 const RoleInterface = new GraphQLInterfaceType({
     name: "Role",
@@ -20,4 +20,4 @@ const RoleInterface = new GraphQLInterfaceType({
     }),
 });
 
-export default RoleInterface;
+module.exports = RoleInterface;

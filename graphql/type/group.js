@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLString } from "graphql";
+const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLString } = require("graphql");
 
-import PermissionType from "./permission";
+const PermissionType = require("./permission");
 
 const GroupType = new GraphQLObjectType({
     name: "Group",
@@ -11,4 +11,4 @@ const GroupType = new GraphQLObjectType({
     }),
 });
 
-export default GroupType;
+module.exports = GroupType;

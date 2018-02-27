@@ -1,12 +1,12 @@
-import Account from "./models/account";
-import Admin from "./models/admin";
-import AdminGroup from "./models/admin-group";
-import AuthAttempt from "./models/auth-attempt";
-import MongoModels from "mongo-models";
-import Promptly from "promptly";
-import Session from "./models/session";
-import Status from "./models/status";
-import User from "./models/user";
+const Account = require("./models/account");
+const Admin = require("./models/admin");
+const AdminGroup = require("./models/admin-group");
+const AuthAttempt = require("./models/auth-attempt");
+const MongoModels = require("mongo-models");
+const Promptly = require("promptly");
+const Session = require("./models/session");
+const Status = require("./models/status");
+const User = require("./models/user");
 
 const main = async function() {
     let options = {};

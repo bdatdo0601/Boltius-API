@@ -1,11 +1,11 @@
-import Fastify from "fastify";
-import MongoModels from "mongo-models";
+const Fastify = require("fastify");
+const MongoModels = require("mongo-models");
 
-import config from "./config";
+const config = require("./config");
 
-import GraphQLFastifyPlugin from "./plugins/graphql";
+const GraphQLFastifyPlugin = require("./plugins/graphql");
 
-import Schema from "./graphql/schema";
+const Schema = require("./graphql/schema");
 
 const PORT = config.get("/port/web");
 
