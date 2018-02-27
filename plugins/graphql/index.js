@@ -252,6 +252,7 @@ const handler = (options = {}) => async (request, reply) => {
                 .send(result);
         }
     } catch (error) {
+        console.log(error);
         // Return error, picking up Boom overrides
         const { statusCode = 500 } = error.output;
         const errors = error.data || [error];

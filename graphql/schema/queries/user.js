@@ -9,6 +9,7 @@ const user = {
     },
     resolve: async (parent, { username }) => {
         const result = await User.findByUsername(username);
+        console.log(result);
         if (result) {
             return { ...result, id: result._id, roles: Object.keys(result.roles) };
         }
