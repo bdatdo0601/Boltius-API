@@ -1,0 +1,5 @@
+# import User from "../type/node/user.graphql"
+
+type Query {
+    user(usernameOrEmail: String!): User
+}

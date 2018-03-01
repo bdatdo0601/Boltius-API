@@ -9,7 +9,9 @@
   "private": false,
   "scripts": {
     "dbsetup": "node dbsetup.js",
-    "start:dev": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js index.js"
+    "start": "NODE_ENV=development nodemon index.js",
+    "start:dev": "pm2 start ecosystem.config.js --env dev",
+    "build:start": "pm2 start ecosystem.config.js --env production"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -17,6 +19,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "nodemon": "^1.15.1",
+    "pm2": "^2.10.1",
     "prettier": "^1.10.2"
   },
   "dependencies": {
@@ -30,7 +33,10 @@
     "fastify": "^1.0.0-rc.2",
     "fastify-mongodb": "^0.5.0",
     "fastify-plugin": "^0.2.2",
+    "global": "^4.3.2",
     "graphql": "^0.13.1",
+    "graphql-import": "^0.4.5",
+    "graphql-tools": "^2.21.0",
     "joi": "^13.1.2",
     "joistick": "^1.0.1",
     "mongo-models": "^2.0.3",

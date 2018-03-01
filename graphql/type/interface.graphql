@@ -1,0 +1,23 @@
+# import PageInfo from "./general/util.graphql"
+
+interface Node {
+    id: ID!
+}
+
+interface Edge {
+    cursor: String!
+    node: Node!
+}
+
+interface Connection {
+    edges: [Edge]!
+    pageInfo: PageInfo!
+}
+
+interface Input {
+    clientMutaionId: ID!
+}
+
+interface Payload {
+    clientMutaionId: ID!
+}
