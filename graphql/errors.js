@@ -15,3 +15,11 @@ exports.UnauthorizedError = createError("UnauthorizedError", {
 exports.ForbiddenError = createError("ForbiddenError", {
     message: "You need to have root permission to perform this",
 });
+
+exports.AbusiveError = createError("AbusiveError", {
+    message: "You tried to log in too many time",
+});
+
+exports.InvalidError = createError("InvalidError", {
+    message: "Credentials are invalid or account is inactive.",
+});

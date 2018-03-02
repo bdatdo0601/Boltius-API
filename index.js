@@ -1,6 +1,10 @@
 const Fastify = require("fastify");
 const MongoModels = require("mongo-models");
 
+const { GraphQLError } = require("graphql");
+const { formatError } = require("apollo-errors");
+const { UnknownError } = require("./graphql/errors");
+
 const config = require("./config");
 
 const GraphQLFastifyPlugin = require("./plugins/graphql");
@@ -18,6 +22,22 @@ const mongoConnection = {
     db: config.get("/mongodb/connection/db"),
 };
 
+const errorFormatter = error => {
+    let e = formatError(error);
+
+    if (e instanceof GraphQLError) {
+        e = formatError(
+            new UnknownError({
+                data: {
+                    originalMessage: e.message,
+                    originalError: e.name,
+                },
+            })
+        );
+    }
+
+    return e;
+};
 // Declare a route
 app.get("/", function(request, reply) {
     reply.send({ hello: "world" });
@@ -28,6 +48,7 @@ app.register(GraphQLFastifyPlugin, {
     query: {
         schema: Schema,
         graphiql: true,
+        formatError: errorFormatter,
     },
     route: {
         path: "/graphql",

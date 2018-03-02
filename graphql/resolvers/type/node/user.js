@@ -2,6 +2,7 @@ const Account = require("../../../../models/account");
 const Admin = require("../../../../models/admin");
 const User = require("../../../../models/user");
 const AdminGroups = require("../../../../models/admin-group");
+const StatusEntry = require("../../../../models/status-entry");
 
 const { adminTypeAdapter, accountTypeAdapter } = require("../../../adapter/userAdapter");
 
@@ -36,6 +37,14 @@ const adminGroups = async obj => {
     return groupList;
 };
 
+const accountNotes = async obj => {
+    return obj.notes.map(async note => ({
+        data: note.data,
+        timeCreated: note.timeCreated,
+        createdBy: await Admin.findById(note.adminCreated.id),
+    }));
+};
+
 const isTypeOfUser = async obj => {
     const user = await User.findById(obj.id);
     return user;
@@ -51,6 +60,15 @@ const isTypeOfAccount = async obj => {
     return account;
 };
 
+const isTypeOfAccountStatus = async obj => {
+    try {
+        const accountStatus = await StatusEntry.findById(obj.id);
+        return accountStatus;
+    } catch (err) {
+        return false;
+    }
+};
+
 module.exports = {
     User: {
         roles,
@@ -61,6 +79,10 @@ module.exports = {
         __isTypeOf: isTypeOfAdmin,
     },
     Account: {
+        notes: accountNotes,
         __isTypeOf: isTypeOfAccount,
+    },
+    AccountStatus: {
+        __isTypeOf: isTypeOfAccountStatus,
     },
 };

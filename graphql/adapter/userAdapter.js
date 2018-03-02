@@ -19,6 +19,7 @@ const adminTypeAdapter = data => ({
 
 const accountTypeAdapter = data => ({
     id: data._id,
+    notes: data.notes,
     currentStatus: data.status.current,
     statusLog: data.status.log,
     first: data.name.first,

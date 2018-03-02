@@ -8,6 +8,19 @@ type User implements Node {
     isActive: Boolean!
     roles: [Role]!
     timeCreated: String!
+    session: Session
+    authHeader: String
+}
+
+type Session {
+    _id: ID!
+    browser: String!
+    ip: String!
+    key: String!
+    lastActive: String
+    os: String!
+    userId: String!
+    timeCreated: String 
 }
 
 type Role {
@@ -38,8 +51,7 @@ type AccountStatus implements Node {
     pivot: String
 }
 
-type AccountNote implements Node {
-    id: ID!
+type AccountNote {
     data: String!
     createdBy: Admin!
     timeCreated: String!

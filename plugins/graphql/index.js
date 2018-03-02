@@ -174,7 +174,7 @@ const createResult = async ({
 
     // Perform the execution, reporting any errors creating the context.
     try {
-        return await execute(schema, documentAST, rootValue, context, variables, operationName);
+        return await execute(schema, documentAST, rootValue, { ...context, request }, variables, operationName);
     } catch (contextError) {
         // Return 400: Bad Request if any execution context errors exist.
         throw Boom.badRequest("Context error", [contextError]);
