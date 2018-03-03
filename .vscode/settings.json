@@ -4,5 +4,8 @@
         "graphi",
         "ql",
         "render"
-    ]
+    ],
+    "files.exclude": {
+        "node_modules": true
+    },
 }

@@ -8,10 +8,9 @@ const getDataFromAuthHeader = authHeader => {
     var plain_auth = buf.toString(); // read it back out as a string
 
     // At this point plain_auth = "username:password"
-
     var creds = plain_auth.split(":"); // split on a ':'
     return {
-        sessionID: creds[0],
+        sessionId: creds[0],
         key: creds[1],
     };
 };
