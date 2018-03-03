@@ -13,11 +13,3 @@ interface Connection {
     edges: [Edge]!
     pageInfo: PageInfo!
 }
-
-interface Input {
-    clientMutaionId: ID!
-}
-
-interface Payload {
-    clientMutaionId: ID!
-}

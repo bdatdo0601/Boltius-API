@@ -8,8 +8,6 @@ type User implements Node {
     isActive: Boolean!
     roles: [Role]!
     timeCreated: String!
-    session: Session
-    authHeader: String
 }
 
 type Session {

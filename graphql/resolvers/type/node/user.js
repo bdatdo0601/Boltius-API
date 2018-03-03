@@ -6,7 +6,7 @@ const StatusEntry = require("../../../../models/status-entry");
 
 const { adminTypeAdapter, accountTypeAdapter } = require("../../../adapter/userAdapter");
 
-const roles = user => {
+const userRoles = user => {
     return Object.keys(user.roles).map(async key => {
         roleID = user.roles[key].id;
         let node;
@@ -24,12 +24,12 @@ const roles = user => {
     });
 };
 
-const adminGroups = async obj => {
+const adminGroups = async admin => {
     let groupList = [];
-    if (obj.groups) {
+    if (admin.groups) {
         const groups = await AdminGroups.find({
             _id: {
-                $in: Object.keys(obj.groups),
+                $in: Object.keys(admin.groups),
             },
         });
         groupList = groupList.concat(groups.map(group => ({ id: group._id, name: group.name })));
@@ -37,8 +37,8 @@ const adminGroups = async obj => {
     return groupList;
 };
 
-const accountNotes = async obj => {
-    return obj.notes.map(async note => ({
+const accountNotes = async account => {
+    return account.notes.map(async note => ({
         data: note.data,
         timeCreated: note.timeCreated,
         createdBy: await Admin.findById(note.adminCreated.id),
@@ -71,7 +71,7 @@ const isTypeOfAccountStatus = async obj => {
 
 module.exports = {
     User: {
-        roles,
+        roles: userRoles,
         __isTypeOf: isTypeOfUser,
     },
     Admin: {

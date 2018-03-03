@@ -1,0 +1,15 @@
+# import User, Session from "../node/user.graphql"
+
+input LoginInput {
+    usernameOrEmail: String!
+    password: String!
+    clientMutationId: String!
+}
+
+type LoginPayload {
+    user: User!
+    session: Session!
+    authHeader: String!
+    clientMutationId: String!
+}
+

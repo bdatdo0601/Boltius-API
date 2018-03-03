@@ -38,22 +38,34 @@ const errorFormatter = error => {
 
     return e;
 };
-// Declare a route
-app.get("/", function(request, reply) {
-    reply.send({ hello: "world" });
-});
 
-// Setup GraphQL
-app.register(GraphQLFastifyPlugin, {
-    query: {
-        schema: Schema,
-        graphiql: true,
-        formatError: errorFormatter,
-    },
-    route: {
-        path: "/graphql",
-    },
-});
+// Add auth
+app
+    .decorate("verifyAuthentication", function(request, reply, done) {
+        if (request.headers.authorization) {
+            done();
+        } else {
+            reply
+                .header("WWW-Authenticate", "Basic")
+                .code(401)
+                .send("Need an Authorization header, put a non-null Authorization header to proceed");
+        }
+    })
+    .register(require("fastify-auth"))
+    .after(() => {
+        app.addHook("preHandler", app.auth([app.verifyAuthentication]));
+        // Setup GraphQL
+        app.register(GraphQLFastifyPlugin, {
+            query: {
+                schema: Schema,
+                graphiql: true,
+                formatError: errorFormatter,
+            },
+            route: {
+                path: "/graphql",
+            },
+        });
+    });
 
 // Run the server!
 const startServer = async () => {

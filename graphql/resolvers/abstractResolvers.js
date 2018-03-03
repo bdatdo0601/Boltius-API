@@ -8,9 +8,7 @@ const baseResolver = createResolver(
     (root, args, context, error) => (isInstance(error) ? error : new Error.UnknownError())
 );
 
-const accountResolver = baseResolver.createResolver((root, args, context, error) => {
-    console.log(root, args, context.request.raw.connection.remoteAddress, error);
-});
+const accountResolver = baseResolver.createResolver(null);
 
 const adminResolver = accountResolver.createResolver(null);
 
