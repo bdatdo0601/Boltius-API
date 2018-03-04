@@ -1,5 +1,7 @@
 # import User from "../type/node/user.graphql"
+# import Node from "../type/interface.graphql"
 
 type Query {
     user(usernameOrEmail: String!): User
+    node(id: ID!): Node
 }

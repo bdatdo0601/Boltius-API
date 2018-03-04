@@ -55,7 +55,7 @@ app.register(GraphQLFastifyPlugin, {
 const startServer = async () => {
     try {
         //setup DB
-        await MongoModels.connect(mongoConnection, {});
+        module.db = await MongoModels.connect(mongoConnection, {});
         console.log("Database Established");
         await app.listen(PORT);
         console.log(`Server listening at port ${PORT}`);

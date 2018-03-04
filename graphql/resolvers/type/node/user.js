@@ -55,6 +55,11 @@ const isTypeOfAdmin = async obj => {
     return admin;
 };
 
+const isTypeOfAdminGroup = async obj => {
+    const group = await AdminGroups.findById(obj.id);
+    return group;
+};
+
 const isTypeOfAccount = async obj => {
     const account = await Account.findById(obj.id);
     return account;
@@ -81,6 +86,9 @@ module.exports = {
     Account: {
         notes: accountNotes,
         __isTypeOf: isTypeOfAccount,
+    },
+    AdminGroup: {
+        __isTypeOf: isTypeOfAdminGroup,
     },
     AccountStatus: {
         __isTypeOf: isTypeOfAccountStatus,
