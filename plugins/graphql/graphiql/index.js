@@ -52,7 +52,16 @@ module.exports = data => {
         width: 100%;
       }
       #graphiql {
-        height: 100vh;
+        height: 98vh;
+      }
+      #authBox {
+        height: 2vh;
+      }
+      #authBoxTitle {
+        margin-right: 16px;
+      }
+      #authBoxInput {
+        width: 500px;
       }
     </style>
     <link href="//cdn.jsdelivr.net/npm/graphiql@${GRAPHIQL_VERSION}/graphiql.css" rel="stylesheet" />
@@ -64,6 +73,9 @@ module.exports = data => {
   </head>
   <body>
     <div id="graphiql">Loading...</div>
+    <div id="authBox">
+      <span id="authBoxTitle">Auth Box</span><input id="authBoxInput" type="text" />
+    </div>
     <script>
       // Collect the URL parameters
       var parameters = {};
@@ -98,11 +110,16 @@ module.exports = data => {
       var fetchURL = locationQuery(otherParams);
       // Defines a GraphQL fetcher using the fetch API.
       function graphQLFetcher(graphQLParams) {
+        let authorization = {};
+        const authValue = document.getElementById("authBoxInput").value
+        if (authValue !== "") 
+          authorization = { 'Authorization': authValue }
         return fetch(fetchURL, {
           method: 'post',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...authorization
           },
           body: JSON.stringify(graphQLParams),
           credentials: 'include',
