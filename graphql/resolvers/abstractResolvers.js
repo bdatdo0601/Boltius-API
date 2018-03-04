@@ -47,7 +47,13 @@ const adminResolver = accountResolver.createResolver((root, args, context) => {
     }
 });
 
-const rootResolver = adminResolver.createResolver(null);
+const rootResolver = adminResolver.createResolver((root, args, context) => {
+    const { currentCredentials } = context;
+    const admin = currentCredentials.roles.admin;
+    if (!admin.isMemberof("root")) {
+        throw new Error.ForbiddenError();
+    }
+});
 
 module.exports = {
     baseResolver,
