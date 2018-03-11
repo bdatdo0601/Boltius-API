@@ -8,6 +8,33 @@ const { baseResolver, rootResolver } = require("../abstractResolvers");
 
 const { userTypeAdapter } = require("../../adapter/userAdapter");
 
+// *********************************************************
+// *HELPER FUNCTION
+// *********************************************************
+const alreadyExisted = async ({ username, email }) => {
+    // check username and email
+    const attemptGetUserByUsername = await User.findByUsername(username);
+    if (attemptGetUserByUsername) {
+        throw new Errors.UserExistedError();
+    }
+    const attemptGetUserByEmail = await User.findByEmail(email);
+    if (attemptGetUserByEmail) {
+        throw new Errors.EmailExistedError();
+    }
+};
+
+const generateSessionAndAuthHeader = async (userAgent, ip, user) => {
+    const session = await Session.create(user._id.toString(), ip, userAgent);
+    const credentials = `${session._id}:${session.key}`;
+    const authHeader = `Basic ${new Buffer(credentials).toString("base64")}`;
+    return {
+        session,
+        authHeader,
+    };
+};
+// *********************************************************
+// *MUTATIONS
+// *********************************************************
 const login = baseResolver.createResolver(async (parent, { input }, { request }) => {
     const ip = request.raw.connection.remoteAddress;
     const detected = await AuthAttempt.abuseDetected(ip, input.usernameOrEmail);
@@ -20,30 +47,14 @@ const login = baseResolver.createResolver(async (parent, { input }, { request })
         await AuthAttempt.create(ip, input.usernameOrEmail);
         throw new Errors.InvalidError();
     }
-    const userAgent = request.headers["user-agent"];
-    const session = await Session.create(user._id.toString(), ip, userAgent);
-    const credentials = `${session._id}:${session.key}`;
-    const authHeader = `Basic ${new Buffer(credentials).toString("base64")}`;
+    const authData = await generateSessionAndAuthHeader(request.headers["user-agent"], ip, user);
     const { clientMutationId } = input;
     return {
         user: userTypeAdapter(user),
-        session,
-        authHeader,
+        ...authData,
         clientMutationId,
     };
 });
-
-const alreadyExisted = async ({ username, email }) => {
-    // check username and email
-    const attemptGetUserByUsername = await User.findByUsername(username);
-    if (attemptGetUserByUsername) {
-        throw new Errors.UserExistedError();
-    }
-    const attemptGetUserByEmail = await User.findByEmail(email);
-    if (attemptGetUserByEmail) {
-        throw new Errors.EmailExistedError();
-    }
-};
 
 const createNewUserAccount = baseResolver.createResolver(async (parent, { input }, { request }) => {
     const ip = request.raw.connection.remoteAddress;
@@ -59,15 +70,11 @@ const createNewUserAccount = baseResolver.createResolver(async (parent, { input 
 
     // TODO: Send welcome email
 
-    const userAgent = request.headers["user-agent"];
-    const session = await Session.create(user._id.toString(), ip, userAgent);
-    const credentials = `${session._id}:${session.key}`;
-    const authHeader = `Basic ${new Buffer(credentials).toString("base64")}`;
+    const authData = await generateSessionAndAuthHeader(request.headers["user-agent"], ip, user);
     const { clientMutationId } = input;
     return {
         user: userTypeAdapter(user),
-        session,
-        authHeader,
+        ...authData,
         clientMutationId,
     };
 });
@@ -86,15 +93,11 @@ const createNewUserAdmin = rootResolver.createResolver(async (parent, { input },
 
     // TODO: Send welcome email
 
-    const userAgent = request.headers["user-agent"];
-    const session = await Session.create(user._id.toString(), ip, userAgent);
-    const credentials = `${session._id}:${session.key}`;
-    const authHeader = `Basic ${new Buffer(credentials).toString("base64")}`;
+    const authData = await generateSessionAndAuthHeader(request.headers["user-agent"], ip, user);
     const { clientMutationId } = input;
     return {
         user: userTypeAdapter(user),
-        session,
-        authHeader,
+        ...authData,
         clientMutationId,
     };
 });
