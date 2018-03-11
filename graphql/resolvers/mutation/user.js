@@ -4,7 +4,7 @@ const Admin = require("../../../models/admin");
 const Session = require("../../../models/session");
 const AuthAttempt = require("../../../models/auth-attempt");
 const Errors = require("../../errors");
-const { baseResolver, rootResolver } = require("../abstractResolvers");
+const { baseResolver, rootResolver, accountResolver } = require("../abstractResolvers");
 
 const { userTypeAdapter } = require("../../adapter/userAdapter");
 
@@ -102,8 +102,17 @@ const createNewUserAdmin = rootResolver.createResolver(async (parent, { input },
     };
 });
 
+const logout = accountResolver.createResolver((parent, { input }, { currentCredentials }) => {
+    if (!currentCredentials) {
+        return { message: "success", clientMutationId: input.clientMutationId };
+    }
+    Session.findByIdAndDelete(currentCredentials.session._id);
+    return { message: "success", clientMutationId: input.clientMutationId };
+});
+
 module.exports = {
     login,
     createNewUserAccount,
     createNewUserAdmin,
+    logout,
 };

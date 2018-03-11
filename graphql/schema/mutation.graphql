@@ -4,4 +4,5 @@ type Mutation {
     login(input: LoginInput!): LoginPayload!
     createNewUserAccount(input: CreateNewUserInput!): CreateNewUserPayload!
     createNewUserAdmin(input: CreateNewUserInput!): CreateNewUserPayload!
+    logout(input: LogoutInput!): LogoutPayload!
 }

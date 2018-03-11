@@ -55,3 +55,12 @@ type CreateNewUserPayload {
     authHeader: String!
     clientMutationId: String!
 }
+
+### Logout
+input LogoutInput {
+    clientMutationId: String!
+}
+type LogoutPayload {
+    message: String!
+    clientMutationId: String!
+}
