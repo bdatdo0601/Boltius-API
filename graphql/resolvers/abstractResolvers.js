@@ -4,13 +4,23 @@ const Session = require("../../models/session");
 const { createResolver } = require("apollo-resolvers");
 const { isInstance } = require("apollo-errors");
 
+const config = require("../../config");
 const { getDataFromAuthHeader } = require("../adapter/authAdapter");
 
 const Error = require("../errors");
 
-const baseResolver = createResolver((root, args, context) => {
-    context.auth = getDataFromAuthHeader(context.request.headers.authorization);
-}, (root, args, context, error) => (isInstance(error) ? error : new Error.UnknownError(error)));
+const baseResolver = createResolver(
+    (root, args, context) => {
+        context.auth = getDataFromAuthHeader(context.request.headers.authorization);
+    },
+    (root, args, context, error) => {
+        if (isInstance(error)) {
+            return error;
+        } else {
+            return config.get("/logging") ? new Error.UnknownError(error) : new Error.UnknownError();
+        }
+    }
+);
 
 const accountResolver = baseResolver.createResolver(async (root, args, context) => {
     const { auth } = context;
