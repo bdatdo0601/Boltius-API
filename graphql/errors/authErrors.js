@@ -1,7 +1,11 @@
 const { createError } = require("apollo-errors");
 
-exports.UnknownError = createError("UnknownError", {
-    message: "It's appear that there is something wrong with our server",
+exports.NotActiveError = createError("NotActiveError", {
+    message: "User is not active",
+});
+
+exports.InvalidError = createError("InvalidError", {
+    message: "Credentials are invalid or account is inactive.",
 });
 
 exports.UnauthenticatedError = createError("UnauthenticatedError", {
@@ -20,10 +24,10 @@ exports.AbusiveError = createError("AbusiveError", {
     message: "You tried to log in too many time",
 });
 
-exports.NotActiveError = createError("NotActiveError", {
-    message: "User is not active",
+exports.UserExistedError = createError("UserExistedError", {
+    message: "Username already in use",
 });
 
-exports.InvalidError = createError("InvalidError", {
-    message: "Credentials are invalid or account is inactive.",
+exports.EmailExistedError = createError("EmailExistedError", {
+    message: "Email already in use",
 });

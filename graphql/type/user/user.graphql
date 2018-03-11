@@ -40,27 +40,18 @@ type LoginPayload {
     clientMutationId: String!
 }
 
-### Signup
-input SignupInput {
+### Create New User (Both for admin or account)
+input CreateNewUserInput {
+    name: String!
     username: String!
     email: String!
     password: String!
     clientMutationId: String!
 }
 
-type SignupPayload {
+type CreateNewUserPayload {
     user: User!
     session: Session!
     authHeader: String!
-    clientMutationId: String!
-}
-
-### Logout
-input LogoutInput {
-    clientMutationId: String!
-}
-
-type LogoutPayload {
-    message: String!
     clientMutationId: String!
 }

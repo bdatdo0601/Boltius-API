@@ -1,5 +1,7 @@
-# import LoginInput, LoginPayload from "../type/user/user.graphql"
+# import * from "../type/user/user.graphql"
 
 type Mutation {
     login(input: LoginInput!): LoginPayload!
+    createNewUserAccount(input: CreateNewUserInput!): CreateNewUserPayload!
+    createNewUserAdmin(input: CreateNewUserInput!): CreateNewUserPayload!
 }
