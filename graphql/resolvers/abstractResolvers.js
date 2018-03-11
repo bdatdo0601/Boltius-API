@@ -10,7 +10,7 @@ const Error = require("../errors");
 
 const baseResolver = createResolver((root, args, context) => {
     context.auth = getDataFromAuthHeader(context.request.headers.authorization);
-}, (root, args, context, error) => (isInstance(error) ? error : new Error.UnknownError()));
+}, (root, args, context, error) => (isInstance(error) ? error : new Error.UnknownError(error)));
 
 const accountResolver = baseResolver.createResolver(async (root, args, context) => {
     const { auth } = context;
@@ -50,7 +50,7 @@ const adminResolver = accountResolver.createResolver((root, args, context) => {
 const rootResolver = adminResolver.createResolver((root, args, context) => {
     const { currentCredentials } = context;
     const admin = currentCredentials.roles.admin;
-    if (!admin.isMemberof("root")) {
+    if (!admin.isMemberOf("root")) {
         throw new Error.ForbiddenError();
     }
 });
