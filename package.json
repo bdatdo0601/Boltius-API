@@ -29,6 +29,7 @@
     "bcrypt": "^1.0.3",
     "boom": "^7.1.1",
     "confidence": "^3.0.2",
+    "dataloader": "^1.4.0",
     "dotenv": "^5.0.0",
     "fastify": "^1.0.0-rc.2",
     "fastify-auth": "^0.2.0",
