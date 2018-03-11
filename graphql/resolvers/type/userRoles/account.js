@@ -1,12 +1,20 @@
 const Account = require("../../../../models/account");
 const StatusEntry = require("../../../../models/status-entry");
 
-const accountNotes = async account => {
+const UserAdapter = require("../../../adapter/userAdapter");
+
+const accountNotes = async (account, args, { Loader }) => {
     return account.notes.map(async note => ({
         data: note.data,
         timeCreated: note.timeCreated,
-        createdBy: await Admin.findById(note.adminCreated.id),
+        createdBy: await Loader.adminIDLoader.load(note.adminCreated.id),
     }));
+};
+
+const user = async (account, args, { Loader }) => {
+    const userID = account.user.id;
+    const user = await Loader.userIDLoader.load(userID);
+    return UserAdapter.userTypeAdapter(user);
 };
 
 const isTypeOfAccount = async obj => {
@@ -25,6 +33,7 @@ const isTypeOfAccountStatus = async obj => {
 
 module.exports = {
     Account: {
+        user,
         notes: accountNotes,
         __isTypeOf: isTypeOfAccount,
     },

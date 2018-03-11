@@ -13,6 +13,8 @@ const Schema = require("./graphql/schema");
 
 const PORT = config.get("/port/web");
 
+const Loader = require("./dataloader");
+
 const app = Fastify({
     logger: config.get("/logging"),
 });
@@ -44,6 +46,9 @@ app.register(GraphQLFastifyPlugin, {
         schema: Schema,
         graphiql: true,
         formatError: errorFormatter,
+        context: {
+            Loader,
+        },
     },
     route: {
         path: "/graphql",

@@ -1,6 +1,7 @@
 const Admin = require("../../../../models/admin");
-
 const AdminGroups = require("../../../../models/admin-group");
+
+const UserAdapter = require("../../../adapter/userAdapter");
 
 const adminGroups = async admin => {
     let groupList = [];
@@ -14,6 +15,13 @@ const adminGroups = async admin => {
     }
     return groupList;
 };
+
+const user = async (admin, args, { Loader }) => {
+    const userID = admin.user.id;
+    const user = await Loader.userIDLoader.load(userID);
+    return UserAdapter.userTypeAdapter(user);
+};
+
 const isTypeOfAdmin = async obj => {
     const admin = await Admin.findById(obj.id);
     return admin;
@@ -26,6 +34,7 @@ const isTypeOfAdminGroup = async obj => {
 
 module.exports = {
     Admin: {
+        user,
         groups: adminGroups,
         __isTypeOf: isTypeOfAdmin,
     },
