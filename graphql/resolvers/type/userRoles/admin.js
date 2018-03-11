@@ -1,0 +1,35 @@
+const Admin = require("../../../../models/admin");
+
+const AdminGroups = require("../../../../models/admin-group");
+
+const adminGroups = async admin => {
+    let groupList = [];
+    if (admin.groups) {
+        const groups = await AdminGroups.find({
+            _id: {
+                $in: Object.keys(admin.groups),
+            },
+        });
+        groupList = groupList.concat(groups.map(group => ({ id: group._id, name: group.name })));
+    }
+    return groupList;
+};
+const isTypeOfAdmin = async obj => {
+    const admin = await Admin.findById(obj.id);
+    return admin;
+};
+
+const isTypeOfAdminGroup = async obj => {
+    const group = await AdminGroups.findById(obj.id);
+    return group;
+};
+
+module.exports = {
+    Admin: {
+        groups: adminGroups,
+        __isTypeOf: isTypeOfAdmin,
+    },
+    AdminGroup: {
+        __isTypeOf: isTypeOfAdminGroup,
+    },
+};

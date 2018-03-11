@@ -2,6 +2,9 @@
 // const User = require("./models/user");
 
 const getDataFromAuthHeader = authHeader => {
+    if (!authHeader) {
+        return { sessionId: "", key: "" };
+    }
     const rawData = authHeader.split(" ")[1];
 
     var buf = new Buffer(rawData, "base64"); // create a buffer and tell it the data coming in is base64

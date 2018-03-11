@@ -24,7 +24,6 @@ const mongoConnection = {
 
 const errorFormatter = error => {
     let e = formatError(error);
-
     if (e instanceof GraphQLError) {
         e = formatError(
             new UnknownError({

@@ -1,0 +1,66 @@
+# import Node from "../interface.graphql"
+
+### Base User, can connect to multiple admins and accounts
+type User implements Node {
+    id: ID!
+    username: String!
+    email: String!
+    isActive: Boolean!
+    roles: [Role]!
+    timeCreated: String!
+}
+
+type Session {
+    _id: ID!
+    browser: String!
+    ip: String!
+    key: String!
+    lastActive: String
+    os: String!
+    userId: String!
+    timeCreated: String 
+}
+
+type Role {
+    type: String!
+    node: Node!
+}
+
+### Login
+input LoginInput {
+    usernameOrEmail: String!
+    password: String!
+    clientMutationId: String!
+}
+
+type LoginPayload {
+    user: User!
+    session: Session!
+    authHeader: String!
+    clientMutationId: String!
+}
+
+### Signup
+input SignupInput {
+    username: String!
+    email: String!
+    password: String!
+    clientMutationId: String!
+}
+
+type SignupPayload {
+    user: User!
+    session: Session!
+    authHeader: String!
+    clientMutationId: String!
+}
+
+### Logout
+input LogoutInput {
+    clientMutationId: String!
+}
+
+type LogoutPayload {
+    message: String!
+    clientMutationId: String!
+}

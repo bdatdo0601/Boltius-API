@@ -235,6 +235,7 @@ const handler = (options = {}) => async (request, reply) => {
 
         // Format any encountered errors.
         if (result && result.errors) {
+            console.log(result.errors);
             result.errors = result.errors.map(errorFormatter);
         }
 

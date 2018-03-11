@@ -1,0 +1,28 @@
+# import Node from "../interface.graphql"
+# import User from "../user/user.graphql"
+# import Admin from "./admin.graphql"
+
+### Account Records, Have status and note from admin
+type AccountStatus implements Node {
+    id: ID!
+    name: String
+    pivot: String
+}
+
+type AccountNote {
+    data: String!
+    createdBy: Admin!
+    timeCreated: String!
+}
+
+type Account implements Node {
+    id: ID!
+    notes: [AccountNote]
+    currentStatus: AccountStatus!
+    statusLog: [AccountStatus]!
+    first: String!
+    middle: String
+    last: String
+    user: User
+    timeCreated: String!
+}
