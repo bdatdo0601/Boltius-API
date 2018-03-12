@@ -12,6 +12,12 @@ const user = adminResolver.createResolver(async (parent, { usernameOrEmail }) =>
     return userTypeAdapter(result);
 });
 
+const users = adminResolver.createResolver(async () => {
+    const userList = await User.find({});
+    return userList.map(user => userTypeAdapter(user));
+});
+
 module.exports = {
     user,
+    users,
 };

@@ -3,5 +3,6 @@
 
 type Query {
     user(usernameOrEmail: String!): User
+    users: [User]
     node(id: ID!): Node
 }
