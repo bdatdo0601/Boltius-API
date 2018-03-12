@@ -1,5 +1,6 @@
 # import Node from "../interface.graphql"
 # import User from "../user/user.graphql"
+# import FullName from "../general/util.graphql"
 
 ### Admin records, belong to groups and have permissions
 type AdminGroup implements Node {
@@ -10,9 +11,7 @@ type AdminGroup implements Node {
 type Admin implements Node {
     id: ID!
     groups: [AdminGroup]!
-    first: String!
-    middle: String
-    last: String
-    user: User
+    name: FullName!
+    user: User!
     timeCreated: String!
 }
