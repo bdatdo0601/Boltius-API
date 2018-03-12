@@ -17,6 +17,14 @@ const user = async (account, args, { Loader }) => {
     return UserAdapter.userTypeAdapter(user);
 };
 
+const name = account => {
+    return {
+        first: account.first,
+        middle: account.middle,
+        last: account.last,
+    };
+};
+
 const isTypeOfAccount = async obj => {
     const account = await Account.findById(obj.id);
     return account;
@@ -34,6 +42,7 @@ const isTypeOfAccountStatus = async obj => {
 module.exports = {
     Account: {
         user,
+        name,
         notes: accountNotes,
         __isTypeOf: isTypeOfAccount,
     },

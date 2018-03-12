@@ -1,6 +1,7 @@
 # import Node from "../interface.graphql"
 # import User from "../user/user.graphql"
 # import Admin from "./admin.graphql"
+# import FullName from "../general/util.graphql"
 
 ### Account Records, Have status and note from admin
 type AccountStatus implements Node {
@@ -20,9 +21,7 @@ type Account implements Node {
     notes: [AccountNote]
     currentStatus: AccountStatus!
     statusLog: [AccountStatus]!
-    first: String!
-    middle: String
-    last: String
-    user: User
+    name: FullName!
+    user: User!
     timeCreated: String!
 }

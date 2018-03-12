@@ -4,3 +4,9 @@ type PageInfo {
   startCursor: String
   endCursor: String
 }
+
+type FullName {
+  first: String!
+  middle: String
+  last: String
+}

@@ -22,6 +22,14 @@ const user = async (admin, args, { Loader }) => {
     return UserAdapter.userTypeAdapter(user);
 };
 
+const name = admin => {
+    return {
+        first: admin.first,
+        middle: admin.middle,
+        last: admin.last,
+    };
+};
+
 const isTypeOfAdmin = async obj => {
     const admin = await Admin.findById(obj.id);
     return admin;
@@ -35,6 +43,7 @@ const isTypeOfAdminGroup = async obj => {
 module.exports = {
     Admin: {
         user,
+        name,
         groups: adminGroups,
         __isTypeOf: isTypeOfAdmin,
     },

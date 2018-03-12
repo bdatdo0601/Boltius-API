@@ -1,8 +1,14 @@
 # import User from "../type/user/user.graphql"
+# import Admin from "../type/userRoles/admin.graphql"
+# import Account from "../type/userRoles/account.graphql"
 # import Node from "../type/interface.graphql"
 
 type Query {
+    node(id: ID!): Node
     user(usernameOrEmail: String!): User
     users: [User]
-    node(id: ID!): Node
+    admin(id: ID!): Admin
+    admins: [Admin]
+    account(id: ID!): Account
+    accounts: [Account]
 }
