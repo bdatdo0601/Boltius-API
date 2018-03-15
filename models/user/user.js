@@ -1,10 +1,11 @@
-const Account = require("./account");
-const Admin = require("./admin");
 const Assert = require("assert");
 const Bcrypt = require("bcrypt");
 const Joi = require("joi");
 const MongoModels = require("mongo-models");
 const NewDate = require("joistick/new-date");
+
+const Account = require("../userRoles/account");
+const Admin = require("../userRoles/admin");
 
 const schema = Joi.object({
     _id: Joi.object(),

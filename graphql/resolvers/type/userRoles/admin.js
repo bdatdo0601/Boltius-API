@@ -1,5 +1,4 @@
-const Admin = require("../../../../models/admin");
-const AdminGroups = require("../../../../models/admin-group");
+const { Admin, AdminGroups } = require("../../../../models/userRoles");
 
 const UserAdapter = require("../../../adapter/userAdapter");
 

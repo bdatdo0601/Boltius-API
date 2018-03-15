@@ -1,5 +1,4 @@
-const Admin = require("../../../models/admin");
-const Account = require("../../../models/account");
+const { Admin, Account } = require("../../../models/userRoles");
 const Errors = require("../../errors/userErrors");
 const { baseResolver } = require("../abstractResolvers");
 

@@ -10,3 +10,9 @@ type FullName {
   middle: String
   last: String
 }
+
+type Image {
+    name: String!
+    alt: String!
+    url: String!
+}

@@ -1,8 +1,9 @@
-const AdminGroup = require("./admin-group");
 const Assert = require("assert");
 const Joi = require("joi");
 const MongoModels = require("mongo-models");
 const NewDate = require("joistick/new-date");
+
+const AdminGroup = require("./admin-group");
 
 const schema = Joi.object({
     _id: Joi.object(),

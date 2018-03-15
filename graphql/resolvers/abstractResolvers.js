@@ -1,9 +1,7 @@
-const User = require("../../models/user");
-const Session = require("../../models/session");
-
 const { createResolver } = require("apollo-resolvers");
 const { isInstance } = require("apollo-errors");
 
+const { User, Session } = require("../../models/user");
 const config = require("../../config");
 const { getDataFromAuthHeader } = require("../adapter/authAdapter");
 
