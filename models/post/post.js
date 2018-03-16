@@ -6,21 +6,12 @@ const Image = require("../general/image");
 
 const schema = Joi.object({
     _id: Joi.object(),
-    // email: Joi.string()
-    //     .email()
-    //     .lowercase()
-    //     .required(),
-    // isActive: Joi.boolean().default(true),
-    // password: Joi.string(),
-    // resetPassword: Joi.object({
-    //     token: Joi.string().required(),
-    //     expires: Joi.date().required(),
-    // }),
     title: Joi.string().required(),
     description: Joi.array()
         .items(Joi.string())
         .default(NewArray(), "array of paragraph"),
     headerImage: Joi.object().type(Image.schema),
+    isPublished: Joi.boolean().default(false),
     extraImages: Joi.array()
         .items(Image.schema)
         .default(NewArray(), "array of image"),
@@ -35,7 +26,7 @@ const schema = Joi.object({
 
 class Post extends MongoModels {}
 
-Post.collectionName = "users";
+Post.collectionName = "posts";
 Post.schema = schema;
 
-module.exports = User;
+module.exports = Post;
