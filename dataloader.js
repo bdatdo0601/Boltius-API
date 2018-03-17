@@ -2,9 +2,8 @@
 const DataLoader = require("dataloader");
 const _ = require("lodash");
 
-const User = require("./models/user");
-const Admin = require("./models/admin");
-const Account = require("./models/admin");
+const { User } = require("./models/user");
+const { Admin, Account } = require("./models/userRoles");
 
 const batchUsingID = async (ids, model) => {
     const list = await model.find({});

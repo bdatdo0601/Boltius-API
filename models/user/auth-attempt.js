@@ -1,8 +1,9 @@
 const Assert = require("assert");
-const Config = require("../config");
 const Joi = require("joi");
 const MongoModels = require("mongo-models");
 const NewDate = require("joistick/new-date");
+
+const Config = require("../../config");
 
 const schema = Joi.object({
     _id: Joi.object(),

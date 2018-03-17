@@ -1,0 +1,43 @@
+# import Node from "../interface.graphql"
+# import Image from "../general/util.graphql"
+
+### Post will contain a header image, title, description and maybe extra image
+type Post implements Node {
+    id: ID!
+    createdBy: User!
+    createdTime: String!
+    title: String!
+    isPublished: Boolean!
+    description: [String]!
+    headerImage: Image!
+    extraImages: [Image]
+}
+
+input ImageInput {
+    name: String!
+    alt: String!
+    url: String!
+}
+
+input CreatePostInput {
+    title: String!
+    description: [String]!
+    headerImage: ImageInput!
+    extraImages: [ImageInput]
+    clientMutationId: String!
+}
+
+type CreatePostPayload {
+    post: Post!
+    clientMutationId: String!
+}
+
+input PublishPostInput {
+    postID: ID!
+    clientMutationId: String!
+}
+
+type PublishPostPayload {
+    post: Post!
+    clientMutationId: String!
+}

@@ -1,4 +1,4 @@
-const User = require("../../../models/user");
+const { User } = require("../../../models/user");
 const Errors = require("../../errors/userErrors");
 const { adminResolver } = require("../abstractResolvers");
 

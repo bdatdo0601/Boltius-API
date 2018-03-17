@@ -1,8 +1,5 @@
-const User = require("../../../models/user");
-const Account = require("../../../models/account");
-const Admin = require("../../../models/admin");
-const Session = require("../../../models/session");
-const AuthAttempt = require("../../../models/auth-attempt");
+const { User, Session, AuthAttempt } = require("../../../models/user");
+const { Account, Admin } = require("../../../models/userRoles");
 const Errors = require("../../errors");
 const { baseResolver, rootResolver, accountResolver } = require("../abstractResolvers");
 

@@ -1,12 +1,9 @@
-const Account = require("./models/account");
-const Admin = require("./models/admin");
-const AdminGroup = require("./models/admin-group");
-const AuthAttempt = require("./models/auth-attempt");
 const MongoModels = require("mongo-models");
 const Promptly = require("promptly");
-const Session = require("./models/session");
-const Status = require("./models/status");
-const User = require("./models/user");
+
+const { Account, Admin, AdminGroup, Status } = require("./models/userRoles");
+const { AuthAttempt, Session, User } = require("./models/user");
+const { Post } = require("./models/post");
 
 const main = async function() {
     let options = {};
@@ -46,6 +43,7 @@ const main = async function() {
         Session.deleteMany({}),
         Status.deleteMany({}),
         User.deleteMany({}),
+        Post.deleteMany({}),
     ]);
 
     // setup root group

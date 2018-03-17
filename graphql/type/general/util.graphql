@@ -10,3 +10,19 @@ type FullName {
   middle: String
   last: String
 }
+
+type Image {
+  name: String!
+  alt: String!
+  url: String!
+}
+
+input getImageUploadURLInput {
+  fileName: String!
+  clientMutationId: String!
+}
+
+type getImageUploadURLPayload {
+  image: Image!
+  clientMutationId: String!
+}

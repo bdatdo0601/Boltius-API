@@ -1,5 +1,4 @@
-const Account = require("../../../../models/account");
-const StatusEntry = require("../../../../models/status-entry");
+const { Account, StatusEntry } = require("../../../../models/userRoles");
 
 const UserAdapter = require("../../../adapter/userAdapter");
 

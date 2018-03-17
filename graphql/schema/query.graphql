@@ -6,9 +6,10 @@
 type Query {
     node(id: ID!): Node
     user(usernameOrEmail: String!): User
-    users: [User]
+    users: [User]!
     admin(id: ID!): Admin
-    admins: [Admin]
+    admins: [Admin]!
     account(id: ID!): Account
-    accounts: [Account]
+    accounts: [Account]!
+    posts: [Post]!
 }
