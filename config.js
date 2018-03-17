@@ -56,6 +56,33 @@ const config = {
             pass: process.env.EMAIL_PWD,
         },
     },
+    aws: {
+        accessKeyID: {
+            $filter: "env",
+            dev: process.env.AWS_ACCESS_KEY_ID,
+            production: process.env.AWS_ACCESS_KEY_ID,
+            $default: "ACCESS_KEY_ID",
+        },
+        secretAccessKey: {
+            $filter: "env",
+            dev: process.env.AWS_SECRET_ACCESS_KEY,
+            production: process.env.AWS_SECRET_ACCESS_KEY,
+            $default: "SECRET_ACCESS_KEY",
+        },
+        s3ImageBucket: {
+            $filter: "env",
+            dev: process.env.S3_BUCKET,
+            production: process.env.S3_BUCKET,
+            $default: "BOLTIUS_TEST_BUCKET",
+        },
+        region: {
+            $filter: "env",
+            dev: process.env.AWS_REGION,
+            production: process.env.AWS_REGION,
+            $default: "AWS_REGION",
+        },
+        signatureVersion: "v4",
+    },
     system: {
         fromAddress: {
             name: "Wentworth Student Government",
