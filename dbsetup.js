@@ -3,6 +3,7 @@ const Promptly = require("promptly");
 
 const { Account, Admin, AdminGroup, Status } = require("./models/userRoles");
 const { AuthAttempt, Session, User } = require("./models/user");
+const { Post } = require("./models/post");
 
 const main = async function() {
     let options = {};
@@ -42,6 +43,7 @@ const main = async function() {
         Session.deleteMany({}),
         Status.deleteMany({}),
         User.deleteMany({}),
+        Post.deleteMany({}),
     ]);
 
     // setup root group

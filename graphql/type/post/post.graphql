@@ -12,3 +12,32 @@ type Post implements Node {
     headerImage: Image!
     extraImages: [Image]
 }
+
+input ImageInput {
+    name: String!
+    alt: String!
+    url: String!
+}
+
+input CreatePostInput {
+    title: String!
+    description: [String]!
+    headerImage: ImageInput!
+    extraImages: [ImageInput]
+    clientMutationId: String!
+}
+
+type CreatePostPayload {
+    post: Post!
+    clientMutationId: String!
+}
+
+input PublishPostInput {
+    postID: ID!
+    clientMutationId: String!
+}
+
+type PublishPostPayload {
+    post: Post!
+    clientMutationId: String!
+}

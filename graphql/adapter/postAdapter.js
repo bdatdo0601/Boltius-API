@@ -4,6 +4,7 @@ const postTypeAdapter = data => ({
     title: data.title,
     isPublished: data.isPublished,
     description: data.description,
+    createdBy: data.createdBy,
 });
 
 module.exports = {

@@ -1,8 +1,8 @@
 const Joi = require("joi");
 const MongoModels = require("mongo-models");
+const Assert = require("assert");
 const NewDate = require("joistick/new-date");
-
-const User = require("../user/user");
+const NewArray = require("joistick/new-array");
 
 const schema = Joi.object({
     _id: Joi.object(),
@@ -25,7 +25,12 @@ const schema = Joi.object({
             })
         )
         .default(NewArray(), "array of image"),
-    createdBy: Joi.object().type(User.schema),
+    createdBy: Joi.object({
+        id: Joi.string().required(),
+        username: Joi.string()
+            .lowercase()
+            .required(),
+    }),
     publishedDate: Joi.date(),
     timeCreated: Joi.date().default(NewDate(), "time of creation"),
 });
@@ -34,14 +39,16 @@ class Post extends MongoModels {
     static async create(postData, user) {
         Assert.ok(postData, "Missing Post Data");
         Assert.ok(user, "Missing User");
-
         const input = new this({
             ...postData,
-            createdBy: user,
+            createdBy: {
+                id: user._id.toString(),
+                username: user.username,
+            },
         });
-        const post = await this.insertOne(input);
+        const posts = await this.insertOne(input);
 
-        return post;
+        return posts[0];
     }
 
     async publish() {
