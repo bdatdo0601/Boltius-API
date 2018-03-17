@@ -1,6 +1,6 @@
 const { Post } = require("../../../../models/post");
 
-const { userTypeAdapter } = require("../../../adapter/authAdapter   ");
+const { userTypeAdapter } = require("../../../adapter/authAdapter");
 
 const createdBy = async (post, args, { Loader }) => {
     return userTypeAdapter(await Loader.userIDLoader.load(post.createdBy.id));
@@ -13,6 +13,7 @@ const isTypeOfPost = async obj => {
 
 module.exports = {
     Post: {
+        id,
         createdBy,
         __isTypeOf: isTypeOfPost,
     },
