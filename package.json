@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "dbsetup": "node dbsetup.js",
-    "start": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=dev nodemon index.js",
     "start:dev": "pm2 start ecosystem.config.js --env dev",
     "build:start": "pm2 start ecosystem.config.js --env production"
   },

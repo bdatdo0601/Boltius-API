@@ -1,8 +1,10 @@
 # import * from "../type/user/user.graphql"
+# import * from "../type/general/util.graphql"
 
 type Mutation {
     login(input: LoginInput!): LoginPayload!
     createNewUserAccount(input: CreateNewUserInput!): CreateNewUserPayload!
     createNewUserAdmin(input: CreateNewUserInput!): CreateNewUserPayload!
     logout(input: LogoutInput!): LogoutPayload!
+    getImageUploadURL(input: getImageUploadURLInput!): getImageUploadURLPayload!
 }

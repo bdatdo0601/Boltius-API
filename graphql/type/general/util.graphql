@@ -12,7 +12,17 @@ type FullName {
 }
 
 type Image {
-    name: String!
-    alt: String!
-    url: String!
+  name: String!
+  alt: String!
+  url: String!
+}
+
+input getImageUploadURLInput {
+  fileName: String!
+  clientMutationId: String!
+}
+
+type getImageUploadURLPayload {
+  image: Image!
+  clientMutationId: String!
 }
